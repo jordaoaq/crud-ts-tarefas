@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// 1. Define o "gerador" do cliente. Ele vai ler este arquivo e criar
+//    o código TypeScript super inteligente para nós.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 2. Define a fonte de dados. Aqui dizemos que estamos usando SQLite
+//    e que o banco de dados será um arquivo chamado "dev.db" na pasta prisma.
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db" // <-- O caminho para o arquivo do banco
+}
+
+// 3. Aqui vamos definir nossos modelos (tabelas).
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
